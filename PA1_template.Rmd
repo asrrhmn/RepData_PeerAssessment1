@@ -1,8 +1,10 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
+title: "Reproducible Research Project 1"
+author: "Anis Rahman"
+date: "03/20/2018"
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 
