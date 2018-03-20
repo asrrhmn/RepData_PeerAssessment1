@@ -10,15 +10,57 @@ output:
 
 ## Loading and preprocessing the data
 
+Code is automated and set the current directory as working directory 
+to download the required dataset
 
+```{r,echo=TRUE}
+library(dplyr)
+library(ggplot2)
+URL <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
+
+if (!file.exists("F2activity.zip")){
+    print("Download in progress")
+    download.file(URL,destfile = "F2activity.zip")
+    print("Download complete .....")
+    print("File Unzip in progress .....")
+    unzip("F2activity.zip")
+    print("Unzip complete, file should reside in Working directory")
+    print("reading file to dataframe")
+    activityDf <- read.csv("activity.csv")
+    print("Completed")
+}else{
+    print("reading file to dataframe")
+    activityDf <- read.csv("activity.csv")
+    print("Completed")
+}
+
+```
 
 ## What is mean total number of steps taken per day?
 
+1. Calculate the total number of steps taken per day
 
+```{r,echo=TRUE}
+daily_steps <- activityDf %>% group_by(date)%>%summarise(total.steps =  sum(steps,na.rm = T))
+
+head(daily_steps,10)
+
+```
+
+2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
+```{r,echo=TRUE}
+
+act.Hist<-ggplot(daily_steps,aes(x=total.steps,fill="blue"))+geom_histogram(fill="red",binwidth=500)
+act.Hist+labs(title="Daily Steps Histogram",x="Steps",y="Frequency")
+
+```
 
 ## What is the average daily activity pattern?
 
+```{r,echo=TRUE}
 
+
+```
 
 ## Imputing missing values
 
